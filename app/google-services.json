@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "251753254016",
+    "project_id": "box-office-2ed19",
+    "storage_bucket": "box-office-2ed19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251753254016:android:ad8dbcc3d06ae450736a65",
+        "android_client_info": {
+          "package_name": "com.areeb.boxoffice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4mjFZ3gEzizrOpMnOZTWl-CyUcM-68j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
