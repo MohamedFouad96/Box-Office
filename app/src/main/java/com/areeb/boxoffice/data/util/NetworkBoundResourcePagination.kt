@@ -1,0 +1,71 @@
+package com.areeb.boxoffice.data.util
+
+
+
+import com.areeb.boxoffice.data.remote.util.ApiEmptyResponse
+import com.areeb.boxoffice.data.remote.util.ApiErrorResponse
+import com.areeb.boxoffice.data.remote.util.ApiResponse
+import com.areeb.boxoffice.data.remote.util.ApiSuccessResponse
+import kotlinx.coroutines.flow.*
+
+
+abstract class NetworkBoundResourcePagination<DB, REMOTE, REMOTE_KEY>() {
+
+    private val TAG = "NetworkBoundResources"
+
+    fun getResult() = flow<Resource<DB>> {
+
+        emit(Resource.loading(null))
+        val localData = fetchFromLocal(fetchRemoteKey())
+        emit(Resource.loading(data = localData))
+
+        if (shouldFetchFromRemote(localData, fetchRemoteKey())) {
+            emit(Resource.loading(null))
+            fetchFromRemote(fetchRemoteKey()).collect { apiResponse ->
+                when (apiResponse) {
+                    is ApiSuccessResponse -> {
+                           if (processRemoteResponse(apiResponse))   {
+                               apiResponse.body?.let { saveRemoteData(it) }
+                               emit(fetchFromLocal(fetchRemoteKey()).let { dbData ->
+                                   Resource.success(dbData)
+                               })
+                           } else {
+                               emit(Resource.success(null))
+                           }
+
+                    }
+                    is ApiErrorResponse -> {
+                        emit(
+                            Resource.error(
+                                apiResponse.errorMessage,
+                                null
+                            )
+                        )
+                    }
+                    is ApiEmptyResponse -> {
+                        emit(Resource.success(null))
+                    }
+
+                    else -> {}
+                }
+            }
+        } else {
+            emit(fetchFromLocal(fetchRemoteKey()).let { Resource.success(it) })
+        }
+    }
+
+    protected abstract suspend fun fetchFromLocal(remoteKey: REMOTE_KEY): DB?
+    protected abstract suspend fun fetchFromRemote(remoteKey: REMOTE_KEY): Flow<ApiResponse<REMOTE>>
+    protected abstract suspend fun processRemoteResponse(
+        response: ApiSuccessResponse<REMOTE>
+    ): Boolean
+
+    protected abstract suspend fun fetchRemoteKey(): REMOTE_KEY
+    protected abstract suspend fun shouldFetchFromRemote(
+        local: DB?,
+        remoteKey: REMOTE_KEY? = null
+    ): Boolean
+
+    protected abstract suspend fun saveRemoteData(remote: REMOTE): Unit
+
+}
