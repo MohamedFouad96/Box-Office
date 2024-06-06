@@ -20,7 +20,8 @@ android {
         versionCode = 1
         versionName = "0.0.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.areeb.boxoffice.InstrumentationTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
