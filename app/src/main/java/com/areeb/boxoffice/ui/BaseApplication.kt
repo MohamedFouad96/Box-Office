@@ -1,10 +1,11 @@
 package com.areeb.boxoffice.ui
 
 import android.app.Application
-import com.areeb.boxoffice.data.di.daoModule
-import com.areeb.boxoffice.data.di.productionModule
-import com.areeb.boxoffice.data.di.remoteApiModule
-import com.areeb.boxoffice.data.di.repoModule
+import com.areeb.boxoffice.di.daoModule
+import com.areeb.boxoffice.di.productionModule
+import com.areeb.boxoffice.di.remoteApiModule
+import com.areeb.boxoffice.di.repoModule
+import com.areeb.boxoffice.di.viewModelModules
 import com.google.firebase.FirebaseApp
 
 import org.koin.android.ext.koin.androidContext
@@ -24,7 +25,7 @@ class BaseApplication : Application() {
     private fun initKoin() {
         startKoin {
             androidContext(this@BaseApplication)
-            modules(listOf(productionModule, remoteApiModule, daoModule, repoModule))
+            modules(listOf(productionModule, remoteApiModule, daoModule, repoModule, viewModelModules))
 
         }
     }

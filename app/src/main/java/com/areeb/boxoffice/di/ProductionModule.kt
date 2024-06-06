@@ -1,4 +1,4 @@
-package com.areeb.boxoffice.data.di
+package com.areeb.boxoffice.di
 
 import android.content.Context
 import androidx.room.Room

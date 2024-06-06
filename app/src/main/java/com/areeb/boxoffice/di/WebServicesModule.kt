@@ -1,4 +1,4 @@
-package com.areeb.boxoffice.data.di
+package com.areeb.boxoffice.di
 
 import com.areeb.boxoffice.data.remote.api.BoxOfficeApi
 import org.koin.dsl.module

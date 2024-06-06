@@ -13,6 +13,12 @@ import com.areeb.boxoffice.data.util.NetworkState
 import com.areeb.boxoffice.data.cache.FakeMoviesDao
 import com.areeb.boxoffice.data.cache.FakeRemoteKeyDao
 import com.areeb.boxoffice.data.remote.FakeBoxOfficeApi
+import com.areeb.boxoffice.di.fake.FakeHomeRepository
+import com.areeb.boxoffice.di.fake.FakeMovieRepository
+import com.areeb.boxoffice.ui.main.screens.MovieDetailsViewModel
+import com.areeb.boxoffice.ui.main.tabs.home.HomeViewModel
+import com.areeb.boxoffice.ui.main.tabs.search.SearchViewModel
+import com.areeb.boxoffice.ui.main.tabs.watch_list.WatchListViewModel
 
 
 class DependencyContainer {
@@ -25,10 +31,20 @@ class DependencyContainer {
     lateinit var fakeRemoteKeys: RemoteKeysDao
 
 
+    lateinit var fakeHomeRepo: IHomeRepository
+    lateinit var fakeMovieRepo: IMovieRepository
+
+
 
     lateinit var homeRepo: IHomeRepository
     lateinit var movieRepo: IMovieRepository
 
+
+
+    lateinit var homeViewModel: HomeViewModel
+    lateinit var searchViewModel: SearchViewModel
+    lateinit var watchListViewModel: WatchListViewModel
+    lateinit var movieDetailsViewModel: MovieDetailsViewModel
 
 
 
@@ -40,10 +56,17 @@ class DependencyContainer {
         fakeMoviesDao = FakeMoviesDao()
         fakeRemoteKeys = FakeRemoteKeyDao()
 
+        fakeMovieRepo = FakeMovieRepository()
+        fakeHomeRepo = FakeHomeRepository()
+
 
         homeRepo = HomeRepository(fakeBoxOfficeApi,fakeMoviesDao,fakeRemoteKeys)
         movieRepo = MovieRepository(fakeBoxOfficeApi,fakeMoviesDao)
 
+        homeViewModel = HomeViewModel(fakeHomeRepo)
+        searchViewModel = SearchViewModel(fakeMovieRepo)
+        watchListViewModel = WatchListViewModel(fakeMovieRepo)
+        movieDetailsViewModel = MovieDetailsViewModel(fakeMovieRepo)
 
     }
 
