@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Box Office</string>
+    <string name="what_do_you_want_to_watch">ماذا تريد أن تشاهد؟</string>
+    <string name="search">بحث</string>
+    <string name="now_playing">يعرض الآن</string>
+    <string name="upcoming">القادم</string>
+    <string name="popular">شائع</string>
+    <string name="home">الرئيسية</string>
+    <string name="watch_list">قائمة المشاهدة</string>
+    <string name="we_are_sorry">نأسف، لم نتمكن من\nالعثور على الفيلم :(</string>
+    <string name="find_your_movie_by_type">ابحث عن فيلمك بواسطة عنوان النوع،\nالفئات، السنوات، إلخ</string>
+    <string name="detail">تفاصيل</string>
+    <string name="about_movie">عن الفيلم</string>
+    <string name="reviews">التقييمات</string>
+    <string name="cast">طاقم العمل</string>
+    <string name="there_is_no_movie_yet">لا يوجد فيلم بعد!</string>
+    <string name="sorry_there_appears_to_be_a_system_problem">عذراً، يبدو أن هناك مشكلة\nفي النظام، يرجى المحاولة لاحقاً</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="search_title_required">عنوان البحث مطلوب</string>
+
+</resources>

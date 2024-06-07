@@ -14,8 +14,8 @@
     <string name="reviews">Reviews</string>
     <string name="cast">Cast</string>
     <string name="there_is_no_movie_yet">There is no movie yet!</string>
-    <string name="search_email_or_name_required">Search email or name required</string>
     <string name="sorry_there_appears_to_be_a_system_problem">Sorry, there appears to be a system\nproblem, please try again later</string>
     <string name="retry">Retry</string>
+    <string name="search_title_required">Search title required</string>
 
 </resources>
